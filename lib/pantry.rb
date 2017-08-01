@@ -13,6 +13,7 @@ class Pantry
     @stock[item]
   end
 
+
   def restock(item, amount)
     if @stock[item] == nil
       @stock[item] = amount
@@ -22,16 +23,25 @@ class Pantry
   end
 
 
+  
+
+  def assign_hash_to_amount(ingredients, ingredient, amount)
+    if amount < 1
+      ingredients[ingredient] = {:quantity => mili_units(amount), :units => "Milli-Units"}
+    elsif amount < 100
+      ingredients[ingredient] = {:quantity => amount, :units => "Universal Units"}
+    else
+      ingredients[ingredient] = {:quantity => centi_units(amount), :units => "Centi_Units"}
+    end
+  end
+
+
+
+
   def convert_units(recipe)
     ingredients = recipe.ingredients
     ingredients.map do |ingredient, amount|
-      if amount < 1
-        ingredients[ingredient] = {:quantity => mili_units(amount), :units => "Milli-Units"}
-      elsif amount < 100
-        ingredients[ingredient] = {:quantity => amount, :units => "Universal Units"}
-      else
-        ingredients[ingredient] = {:quantity => centi_units(amount), :units => "Centi_Units"}
-      end
+      assign_hash_to_amount(ingredients, ingredient, amount)
     end
     ingredients
   end
@@ -51,7 +61,7 @@ class Pantry
   def what_can_i_make
     what_can_i_make = []
     @cookbook.each do |recipe|
-      if stock_check_ingredients(recipe.ingredients) == true
+      if stock_check_ingredients(recipe.ingredients)
         what_can_i_make << recipe.name
       end
     end
@@ -67,39 +77,10 @@ class Pantry
     true
   end
 
-  def difference_in_ingredients(ingredient)
-    
-
-  end
-
-
   def find_recipe_by_name(name)
     @cookbook.find do |recipe|
       recipe.name == name
     end
   end
 
-  def how_many_can_i_make
-
-
-
-
-  end
-
 end
-
-
-# recipe_names = what_can_i_make
-# recipes = recipe_names.map do |name|
-#   find_recipe_by_name(name)
-# end
-#
-# recipe_units = recipes.map do |recipe|
-#   convert_units(recipe)
-# end
-#
-# recipe_units.each do |recipe_ingredients|
-#
-#   recipe_ingredient.each do |ingredient|
-#     ingredient[]
-#   # = recipe_units[ingredient][:quantity] / stock_check(ingredient)
