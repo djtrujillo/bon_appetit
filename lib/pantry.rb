@@ -1,3 +1,4 @@
+
 class Pantry
   attr_reader :stock,
               :cookbook
@@ -13,7 +14,6 @@ class Pantry
     @stock[item]
   end
 
-
   def restock(item, amount)
     if @stock[item] == nil
       @stock[item] = amount
@@ -21,9 +21,6 @@ class Pantry
       @stock[item] = @stock[item] + amount
     end
   end
-
-
-  
 
   def assign_hash_to_amount(ingredients, ingredient, amount)
     if amount < 1
@@ -34,9 +31,6 @@ class Pantry
       ingredients[ingredient] = {:quantity => centi_units(amount), :units => "Centi_Units"}
     end
   end
-
-
-
 
   def convert_units(recipe)
     ingredients = recipe.ingredients

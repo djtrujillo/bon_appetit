@@ -125,12 +125,14 @@ class PantryTest < Minitest::Test
   end
 
   def test_mixed_units
+    skip
     r = Recipe.new("Spicy Cheese Pizza")
     r.add_ingredient("Cayenne Pepper", 1.025)
     r.add_ingredient("Cheese", 75)
     r.add_ingredient("Flour", 550)
     pantry = Pantry.new
     convert_units = pantry.convert_units(r)
+    puts convert_units
 
     assert_instance_of Hash, convert_units
   end
