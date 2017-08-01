@@ -67,4 +67,39 @@ class Pantry
     true
   end
 
+  def difference_in_ingredients(ingredient)
+    
+
+  end
+
+
+  def find_recipe_by_name(name)
+    @cookbook.find do |recipe|
+      recipe.name == name
+    end
+  end
+
+  def how_many_can_i_make
+
+
+
+
+  end
+
 end
+
+
+# recipe_names = what_can_i_make
+# recipes = recipe_names.map do |name|
+#   find_recipe_by_name(name)
+# end
+#
+# recipe_units = recipes.map do |recipe|
+#   convert_units(recipe)
+# end
+#
+# recipe_units.each do |recipe_ingredients|
+#
+#   recipe_ingredient.each do |ingredient|
+#     ingredient[]
+#   # = recipe_units[ingredient][:quantity] / stock_check(ingredient)
